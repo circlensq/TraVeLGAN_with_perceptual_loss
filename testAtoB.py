@@ -1,4 +1,3 @@
-from data import get_datasets
 from trainer import TravelGAN
 from torch.utils.data.dataloader import DataLoader
 from utils import get_device, load_json, data_load
