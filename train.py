@@ -14,7 +14,6 @@ import torchvision.transforms as transforms
 from edge_promoting import edge_promoting
 
 parser = argparse.ArgumentParser()
-# parser.add_argument("-d", "--device", type=int, help="gpu id")
 parser.add_argument("--log", type=str, default='./log_siamese_learn_VGG/', help="name of log folder")
 parser.add_argument("-p", "--hparams", type=str, default='cifar', help="hparams config file")
 parser.add_argument('--project_name', required=False, default='TravelGAN_siamese_learn_VGG',  help='project name')
@@ -25,13 +24,7 @@ opts = parser.parse_args()
 print(opts)
 
 # Get CUDA/CPU device
-# device = get_device(opts.device)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
-    
-# if not os.path.isdir(os.path.join(opts.project_name + '_results', 'Reconstruction')):
-#     os.makedirs(os.path.join(opts.project_name + '_results', 'Reconstruction'))
 if not os.path.isdir(os.path.join(opts.project_name + '_results', 'Transfer')):
     os.makedirs(os.path.join(opts.project_name + '_results', 'Transfer'))
 
@@ -60,31 +53,28 @@ tgt_transform = transforms.Compose([
 
 print('Loading data..')
 hparams = load_json('./configs', opts.hparams)
-
-if not os.path.isdir(os.path.join('./../../data/', 'bitmoji/all_gender_pair/')):
+if not os.path.isdir(os.path.join('./dataset/', 'CelebA/', 'trainA_pair')):
     print('Domain A edge-promoting start!!')
-    edge_promoting(os.path.join('./../../data/', 'bitmoji/', 'all_gender'), os.path.join('./../../data', 'bitmoji/all_gender_pair/'))
+    edge_promoting(os.path.join('./dataset/', 'CelebA/train/'), os.path.join('./dataset/', 'CelebA/trainA_pair/'))
 else:
-    print('Domain A edge-promoting already done')
+    print('Domain A edge-promoting start!!')
 
-if not os.path.isdir(os.path.join('./../../data/', 'faces_bg_removed/', 'pair')):
+if not os.path.isdir(os.path.join('./dataset/', 'Bitmoji/trainB_pair/')):
     print('Domain B edge-promoting start!!')
-    edge_promoting(os.path.join('./../../data/', 'faces_bg_removed/', 'train'), os.path.join('./../../data', 'faces_bg_removed/', 'pair'))
+    edge_promoting(os.path.join('./dataset/', 'Bitmoji/'), os.path.join('./dataset/', 'Bitmoji/trainB_pair/'))
 else:
-    print('Domain B edge-promoting already done')
+    print('Domain B edge-promoting start!!')
+
 
 loading = hparams['loading']
-train_loader_src = data_load(os.path.join('./../../data/', 'faces_bg_removed/'), 'pair', src_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
-train_loader_tgt = data_load(os.path.join('./../../data/', 'bitmoji/'), 'all_gender_pair', tgt_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
-test_loader_src = data_load(os.path.join('./../../data/', 'faces_bg_removed/'), 'test', src_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
+train_loader_src = data_load(os.path.join('./dataset/', 'CelebA/'), 'trainA_pair', src_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
+train_loader_tgt = data_load(os.path.join('./dataset/', 'Bitmoji/'), 'trainB_pair', tgt_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
+test_loader_src = data_load(os.path.join('./dataset/', 'CelebA/'), 'test', src_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
 
 model = TravelGAN(hparams['model'], device=device)
 if  hparams['saved_model'] :
     print('saved model : ', hparams['saved_model'])
     model.resume(hparams['saved_model'])
-
-
-# writer, monitor = get_writer(opts.log)
 
 print('Start training..')
 for epoch in range(hparams['n_epochs']):

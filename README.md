@@ -6,7 +6,7 @@ Pytorch code of my thesis project *"Photo-to-Emoji Transformation with TraVeLGAN
 Steps:
 1. Download all of the files and folders in this repo and prepare the dataset. In my project, in this project we used [CelebA dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) and Bitmoji dataset run `python create_emojis.py` and set the number of bitmoji images on the `num_emojis` variable.
 
-2. Put all the CelebA dataset inside `dataset/CelebA` folder.
+2. Put the training CelebA dataset inside `dataset/CelebA/train/` folder, and test CelebA dataset inside `dataset/CelebA/test`.
 
 3. Put all the Bitmoji dataset inside `dataset/Bitmoji` folder.
 

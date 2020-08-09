@@ -1,3 +1,4 @@
+""" edge_promoting approach in CartoonGAN """
 import cv2, os
 import numpy as np
 from tqdm import tqdm
