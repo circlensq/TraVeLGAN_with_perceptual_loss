@@ -1,6 +1,6 @@
 # Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss
 
-Pytorch implementation of Thesis project entitled *"Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss"* (or in Chinese, *"基於TraVeLGAN與Perceptual Loss實現照⽚轉換表情符號之應⽤"*)
+Pytorch implementation of Thesis project entitled *"Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss"* (or in Chinese, "基於TraVeLGAN與Perceptual Loss實現照⽚轉換表情符號之應⽤")
 
 ## Getting Started (Training)
 Steps:
