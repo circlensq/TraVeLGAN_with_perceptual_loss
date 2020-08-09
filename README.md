@@ -1,6 +1,6 @@
 # Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss
 
-Pytorch code of my thesis project *"Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss"* (or in Chinese, *"基於TraVeLGAN與Perceptual Loss實現照⽚轉換表情符號之應⽤"*)
+Pytorch implementation of Thesis project entitled *"Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss"* (or in Chinese, *"基於TraVeLGAN與Perceptual Loss實現照⽚轉換表情符號之應⽤"*)
 
 ## Getting Started (Training)
 Steps:
@@ -26,3 +26,17 @@ Steps:
 ```
 python testAtoB.py --project_name photo2emoji
 ```
+
+## Result Samples
+![1](./samples/1.png)![2](./samples/2.png)![3](./samples/3.png)![4](./samples/4.png)![5](./samples/5.png)
+
+![6](./samples/6.png)![7](./samples/7.png)![8](./samples/8.png)![9](./samples/9.png)![10](./samples/10.png)
+
+## Comparison
+1. TraVeLGAN (Original)
+
+![1](./samples/comparison/TraVeLGAN/1.png)![2](./samples/comparison/TraVeLGAN/2.png)![3](./samples/comparison/TraVeLGAN/3.png)![4](./samples/comparison/TraVeLGAN/4.png)![5](./samples/comparison/TraVeLGAN/5.png)
+
+2. TraVeLGAN + Perceptual Loss
+
+![1](./samples/comparison/TraVeLGAN_with_Perceptual_Loss/1.png)![2](./samples/comparison/TraVeLGAN_with_Perceptual_Loss/2.png)![3](./samples/comparison/TraVeLGAN_with_Perceptual_Loss/3.png)![4](./samples/comparison/TraVeLGAN_with_Perceptual_Loss/4.png)![5](./samples/comparison/TraVeLGAN_with_Perceptual_Loss/5.png)
