@@ -1,15 +1,8 @@
 {
   "n_epochs": 500,
   "n_save_steps": 50,
-  "dataset": {
-    "type": "cifar",
-    "data_path": "./data",
-    "label_a": "bird",
-    "label_b": "ship",
-    "n_tracks": 2000
-  },
   "loading": {
-    "batch_size": 8,
+    "batch_size": 32,
     "shuffle": true
   },
   "saved_model": "",
