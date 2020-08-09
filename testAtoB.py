@@ -1,7 +1,6 @@
 from data import get_datasets
 from trainer import TravelGAN
 from torch.utils.data.dataloader import DataLoader
-# from utils import get_device, load_json, get_writer
 from utils import get_device, load_json, data_load
 import argparse
 from statistics import mean
@@ -13,17 +12,15 @@ import torchvision.transforms as transforms
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--hparams", type=str, default='cifar', help="hparams config file")
-parser.add_argument('--project_name', required=False, default='TravelGAN_up500_siamese_learn_VGG',  help='project name')
+parser.add_argument('--project_name', required=False, default='photo2emoji',  help='project name')
 parser.add_argument('--input_size', type=int, default=64, help='input size')
-
 opts = parser.parse_args()
 
 print(opts)
-
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-if not os.path.isdir(os.path.join(opts.project_name + '_results', 'Test_AtoB_model_200')):
-    os.makedirs(os.path.join(opts.project_name + '_results', 'Test_AtoB_model_200'))
+if not os.path.isdir(os.path.join(opts.project_name + '_results', 'Test_AtoB_model_500')):
+    os.makedirs(os.path.join(opts.project_name + '_results', 'Test_AtoB_model_500'))
 
 # Generate seed
 opts.manualSeed = random.randint(1, 10000)
@@ -40,7 +37,7 @@ src_transform = transforms.Compose([
 
 print('Loading data..')
 hparams = load_json('./configs', opts.hparams)
-test_photo_loader_src = data_load(os.path.join('./../../data/', 'faces_bg_removed/'), 'test', src_transform, batch_size=1, shuffle=False, drop_last=True)
+test_src = data_load(os.path.join('./dataset/', 'CelebA/'), 'test', src_transform, batch_size=1, shuffle=False, drop_last=True)
 
 model = TravelGAN(hparams['model'], device=device)
 if  hparams['saved_model'] :
@@ -48,9 +45,8 @@ if  hparams['saved_model'] :
     model.resume(hparams['saved_model'])
 
 with torch.no_grad():
-    # n = 0
     model.eval()
-    for n, (x_a, _) in enumerate(test_photo_loader_src):
+    for n, (x_a, _) in enumerate(test_src):
         # Loading on device
         x_a = x_a.to(device)
 
@@ -58,7 +54,7 @@ with torch.no_grad():
         x_ab = x_ab.detach()
 
         result = torch.cat((x_a[0], x_ab[0]), 2)
-        path = os.path.join(opts.project_name + '_results', 'Test_AtoB_model_200/' + str(n+1) + '.png')
+        path = os.path.join(opts.project_name + '_results', 'Test_AtoB_model_500/' + str(n+1) + '.png')
         plt.imsave(path, (result.cpu().numpy().transpose(1, 2, 0) + 1) / 2)
 
 

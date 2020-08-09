@@ -2,7 +2,7 @@
 
 Pytorch code of my thesis project *"Photo-to-Emoji Transformation with TraVeLGAN and Perceptual Loss"* (or in Chinese, *"基於TraVeLGAN與Perceptual Loss實現照⽚轉換表情符號之應⽤"*)
 
-## Getting Started
+## Getting Started (Training)
 Steps:
 1. Download all of the files and folders in this repo and prepare the dataset. In my project, in this project we used [CelebA dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) and Bitmoji dataset run `python create_emojis.py` and set the number of bitmoji images on the `num_emojis` variable.
 
@@ -14,5 +14,15 @@ Steps:
 
 5. Run program using command 
 ```
-python train.py --log log_photo_to_emoji --project_name Photo-to-emoji  
+python train.py --log log_photo2emoji --project_name photo2emoji  
+```
+
+
+## Testing
+Steps:
+1. Change the `saved_model` key in `config.json` to be `./log_photo_to_emoji/model_500.pt` or whenever number of iteration model you use.
+
+2. run program using command
+```
+python testAtoB.py --project_name photo2emoji
 ```

@@ -1,6 +1,6 @@
 {
   "n_epochs": 500,
-  "n_save_steps": 50,
+  "n_save_steps": 100,
   "loading": {
     "batch_size": 32,
     "shuffle": true

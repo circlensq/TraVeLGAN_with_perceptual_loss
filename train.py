@@ -14,9 +14,9 @@ import torchvision.transforms as transforms
 from edge_promoting import edge_promoting
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--log", type=str, default='./log_siamese_learn_VGG/', help="name of log folder")
+parser.add_argument("--log", type=str, default='./log_photo2emoji/', help="name of log folder")
 parser.add_argument("-p", "--hparams", type=str, default='cifar', help="hparams config file")
-parser.add_argument('--project_name', required=False, default='TravelGAN_siamese_learn_VGG',  help='project name')
+parser.add_argument('--project_name', required=False, default='photo2emoji',  help='project name')
 parser.add_argument('--input_size', type=int, default=64, help='input size')
 
 opts = parser.parse_args()
