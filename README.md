@@ -23,8 +23,10 @@ Steps:
 
 2. run program using command
 ```
-python testAtoB.py --project_name photo2emoji
+python testAtoB.py --project_name photo2emoji --log log_photo2emoji
 ```
+
+NB: You could download the pretrained model from this link [OneDrive Link](https://1drv.ms/u/s!AjeiFbaHw5H2hyzcU7dNH8fvLAgd?e=d7lWGL), and place it in `log_photo2emoji` folder
 
 ## Folder structure
 The following shows basic folder structure.
@@ -33,10 +35,11 @@ The following shows basic folder structure.
 ├── dataset
 │   ├── CelebA # Domain A (not included in this repo)
 │   │   ├── trainA 
-│   │   └── trainA_pair # edge-promoting results to be saved here
+│   │   └── trainA_pair # edge-promoting results of CelebA to be saved here
 │   |
 │   |── Bitmoji # Domain B (not included in this repo)
-│   |   └── train  
+│   |   ├── trainB 
+|   |   └── trainB_pair # edge-promoting results of Bitmoji to be saved here
 |   |
 |   |── bitmoji_api_info.md
 |   |── create_emojis.py
