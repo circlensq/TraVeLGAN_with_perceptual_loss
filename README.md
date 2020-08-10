@@ -32,12 +32,12 @@ The following shows basic folder structure.
 ├── configs # config.json folder
 ├── dataset
 │   ├── CelebA # Domain A (not included in this repo)
-│   │   └── trainA 
-│   │   
+│   │   ├── trainA 
+│   │   └── trainA_pair # edge-promoting results of CelebA to be saved here
 │   |
 │   |── Bitmoji # Domain B (not included in this repo)
 │   |   ├── trainB 
-|   |   └── trainB_pair # edge-promoting results to be saved here
+|   |   └── trainB_pair # edge-promoting results of Bitmoji to be saved here
 |   |
 |   |── bitmoji_api_info.md
 |   |── create_emojis.py
