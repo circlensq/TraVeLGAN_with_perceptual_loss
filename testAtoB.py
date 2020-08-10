@@ -1,6 +1,6 @@
 from trainer import TravelGAN
 from torch.utils.data.dataloader import DataLoader
-from utils import get_device, load_json, data_load
+from utils import load_json, data_load
 import argparse
 from statistics import mean
 import torch
