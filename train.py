@@ -1,4 +1,3 @@
-from data import get_datasets
 from trainer import TravelGAN
 from torch.utils.data.dataloader import DataLoader
 from utils import get_device, load_json, data_load
@@ -14,7 +13,7 @@ from edge_promoting import edge_promoting
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--log", type=str, default='./log_photo2emoji/', help="name of log folder")
-parser.add_argument("-p", "--hparams", type=str, default='cifar', help="hparams config file")
+parser.add_argument("-p", "--hparams", type=str, default='config', help="hparams config file")
 parser.add_argument('--project_name', required=False, default='photo2emoji',  help='project name')
 parser.add_argument('--input_size', type=int, default=64, help='input size')
 
@@ -71,9 +70,14 @@ train_loader_tgt = data_load(os.path.join('./dataset/', 'Bitmoji/'), 'trainB_pai
 test_loader_src = data_load(os.path.join('./dataset/', 'CelebA/'), 'test', src_transform, batch_size=loading['batch_size'], shuffle=loading['shuffle'], drop_last=True)
 
 model = TravelGAN(hparams['model'], device=device)
-if  hparams['saved_model'] :
-    print('saved model : ', hparams['saved_model'])
-    model.resume(hparams['saved_model'])
+if  hparams['saved_model'] or opts.log:
+    if hparams['saved_model']:
+        print('saved model : ', hparams['saved_model'])
+        model.resume(hparams['saved_model'])
+    else :
+        print('saved model : ', opts.log)
+        model.resume(opts.log)
+
 
 print('Start training..')
 for epoch in range(hparams['n_epochs']):

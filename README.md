@@ -6,7 +6,7 @@ Pytorch implementation of Thesis project entitled *"Photo-to-Emoji Transformatio
 Steps:
 1. Download all of the files and folders in this repo and prepare the dataset. In my project, in this project we used [CelebA dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) and Bitmoji dataset run `python create_emojis.py` and set the number of bitmoji images on the `num_emojis` variable.
 
-2. Put the training CelebA dataset inside `dataset/CelebA/train/` folder, and test CelebA dataset inside `dataset/CelebA/test`.
+2. Put the training CelebA dataset inside `dataset/CelebA/trainA/` folder, and test CelebA dataset inside `dataset/CelebA/test`.
 
 3. Put all the Bitmoji dataset inside `dataset/Bitmoji` folder.
 
@@ -19,7 +19,7 @@ python train.py --log log_photo2emoji --project_name photo2emoji
 
 ## Testing
 Steps:
-1. Change the `saved_model` key in `config.json` to be `./log_photo_to_emoji/model_500.pt` or whenever number of iteration model you use.
+1. Change the `saved_model` key in `config.json` to be `./log_photo2emoji/model_500.pt` or whenever number of iteration model you use.
 
 2. run program using command
 ```
@@ -46,7 +46,7 @@ The following shows basic folder structure.
 |   └── default.py  # the Generator, Discriminator, Siamese network
 |
 ├── photo2emoji # will be created using --project_name photo2emoji command
-├── pretrained_model
+├── log_photo2emoji
 |   └── model_500.pt # download this file (link at Pretrained Section)
 |
 ├── samples # result samples folder
